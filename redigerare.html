@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Textredigerare</title>
+  <link rel="shortcut icon" href="Chat ai/1.png" type="image/x-icon">
+  <style>
+    /* Uppdaterad CSS-kod med kontur runt input-fältet */
+body {
+  font-family: 'Courier New', monospace;
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Placera innehållet längre upp på sidan */
+  height: 100vh;
+}
+
+.console {
+  border: 2px solid #fff;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #000;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
+  margin-top: 20px; /* Öka avståndet från toppen */
+}
+
+#editor {
+  width: calc(100% - 22px); /* Justera bredden för textarea */
+  height: 1000px;
+  resize: vertical;
+  box-sizing: border-box;
+  padding: 5px;
+  font-size: 16px;
+  background-color: #000000;
+  color: #fff;
+  border: 2px solid #fff; /* Lägg till kontur runt textarea */
+  outline: none;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #000;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <button onclick="visaHtml()">Visa i webbläsare</button>
+    <button onclick="tomEditor()">Rensa</button>
+  </div>
+  <textarea id="editor" placeholder="Skriv din HTML-kod här..."></textarea>
+  
+  <div class="keyboard">
+    <button onclick="addText('<html> </html>')">&lt;html&gt;</button>
+    <button onclick="addText('<head> </head>')">&lt;head&gt;</button>
+    <button onclick="addText('<body> </body>')">&lt;body&gt;</button>
+    <button onclick="addText('{}')">{}</button>
+    <button onclick="addText('[]')">[]</button>
+    <button onclick="addText('<title> </title>')">&lt;title&gt;</button>
+    <button onclick="addText(';')">;</button>
+    <button onclick="addText('<style> </style>')">&lt;style&gt;</button>
+    <!-- Lägg till fler knappar för andra tecken eller taggar vid behov -->
+  </div>
+
+  <script>
+    function visaHtml() {
+      const htmlKod = document.getElementById('editor').value;
+      const nyttFönster = window.open('', '_blank');
+      nyttFönster.document.write(htmlKod);
+      nyttFönster.document.close();
+    }
+
+    function tomEditor() {
+      document.getElementById('editor').value = '';
+    }
+
+    function addText(text) {
+      document.getElementById('editor').value += text;
+    }
+  </script>
+</body>
+</html>
